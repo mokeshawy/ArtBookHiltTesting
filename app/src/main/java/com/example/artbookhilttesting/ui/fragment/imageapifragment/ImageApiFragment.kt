@@ -5,14 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.RequestManager
 import com.example.artbookhilttesting.databinding.FragmentImageApiBinding
-import com.example.artbookhilttesting.ui.fragment.imageapifragment.ImageApiViewModel
+import javax.inject.Inject
 
-class ImageApiFragment : Fragment() {
+class ImageApiFragment
+@Inject
+constructor( ): Fragment() {
 
     lateinit var binding : FragmentImageApiBinding
-    private val imageApiViewModel : ImageApiViewModel by viewModels()
+    private val imageApiViewModel : ImageApiViewModel by activityViewModels()
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         // Inflate the layout for this fragment
         binding = FragmentImageApiBinding.inflate(inflater)

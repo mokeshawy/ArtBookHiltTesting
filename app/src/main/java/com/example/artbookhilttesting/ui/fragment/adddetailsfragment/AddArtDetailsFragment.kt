@@ -9,10 +9,14 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.RequestManager
 import com.example.artbookhilttesting.R
 import com.example.artbookhilttesting.databinding.FragmentAddArtDetailsBinding
+import javax.inject.Inject
 
-class AddArtDetailsFragment : Fragment() {
+class AddArtDetailsFragment
+@Inject
+constructor( val glide : RequestManager): Fragment() {
 
     lateinit var binding            : FragmentAddArtDetailsBinding
     private val addArtsViewModel    : AddArtsViewModel by viewModels()

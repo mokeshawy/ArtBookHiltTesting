@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class ArtModel(
     var name        : String ,
     var artisName   : String,
-    var vear        : Int,
+    var year        : Int,
     var imageUrl    : String,
     @PrimaryKey(autoGenerate = true)
     var id          : Int? = null

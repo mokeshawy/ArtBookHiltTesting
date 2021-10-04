@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.artbookhilttesting.R
 import com.example.artbookhilttesting.databinding.FragmentArtsBinding
 
 
@@ -26,5 +28,10 @@ class ArtsFragment : Fragment() {
         /* connect with viewModel */
         binding.lifecycleOwner  = this
         binding.artsFragment    = artsViewModel
+
+        /* go to add details arts */
+        binding.btnFloatingAction.setOnClickListener {
+            findNavController().navigate(R.id.action_artsFragment_to_addArtDetailsFragment)
+        }
     }
 }

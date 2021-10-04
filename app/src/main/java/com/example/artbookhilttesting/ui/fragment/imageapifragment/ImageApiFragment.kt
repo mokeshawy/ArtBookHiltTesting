@@ -1,4 +1,4 @@
-package com.example.artbookhilttesting
+package com.example.artbookhilttesting.ui.fragment.imageapifragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,6 +25,7 @@ class ImageApiFragment : Fragment() {
         /* connect with viewModel */
         binding.lifecycleOwner      = this
         binding.imageApiFragment    = imageApiViewModel
+
 
     }
 }

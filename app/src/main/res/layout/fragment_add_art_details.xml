@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/artImageView"
+                android:id="@+id/art_image_view"
                 android:layout_width="350dp"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
@@ -51,7 +51,7 @@
                 android:id="@+id/et_enter_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -89,7 +89,7 @@
                 android:id="@+id/et_enter_year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
 

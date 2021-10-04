@@ -9,15 +9,31 @@
         android:id="@+id/artsFragment"
         android:name="com.example.artbookhilttesting.ui.fragment.artsfragment.ArtsFragment"
         android:label="Arts Fragment"
-        tools:layout="@layout/fragment_arts" />
+        tools:layout="@layout/fragment_arts" >
+        <action
+            android:id="@+id/action_artsFragment_to_addArtDetailsFragment"
+            app:destination="@id/addArtDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/artsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addArtDetailsFragment"
         android:name="com.example.artbookhilttesting.ui.fragment.adddetailsfragment.AddArtDetailsFragment"
         android:label="Add Details"
-        tools:layout="@layout/fragment_add_art_details" />
+        tools:layout="@layout/fragment_add_art_details" >
+        <action
+            android:id="@+id/action_addArtDetailsFragment_to_imgaeApiFragment"
+            app:destination="@id/imgaeApiFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_addArtDetailsFragment_to_artsFragment"
+            app:destination="@id/artsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/addArtDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/imgaeApiFragment"
-        android:name="com.example.artbookhilttesting.ImageApiFragment"
+        android:name="com.example.artbookhilttesting.ui.fragment.imageapifragment.ImageApiFragment"
         android:label="Image Api"
         tools:layout="@layout/fragment_image_api" />
 </navigation>

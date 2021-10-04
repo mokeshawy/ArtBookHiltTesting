@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.artbookhilttesting.R
 import com.example.artbookhilttesting.databinding.FragmentAddArtDetailsBinding
 
@@ -25,5 +28,20 @@ class AddArtDetailsFragment : Fragment() {
         /* connect with view model */
         binding.lifecycleOwner = this
         binding.adArtsDetailsFragment = addArtsViewModel
+
+        binding.artImageView.setOnClickListener {
+            findNavController().navigate(R.id.action_addArtDetailsFragment_to_imgaeApiFragment)
+        }
+
+        /* handle on back pressed of fragment */
+        val callBack = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callBack)
+
+
+
     }
 }

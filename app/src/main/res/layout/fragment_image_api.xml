@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -8,11 +9,31 @@
             type="com.example.artbookhilttesting.ui.fragment.imageapifragment.ImageApiViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ImageApiFragment">
+        tools:context=".ui.fragment.imageapifragment.ImageApiFragment"
+        android:orientation="vertical">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+
+        <EditText
+            android:id="@+id/et_search_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search Image"
+            android:inputType="textPersonName" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_result_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" />
+    </LinearLayout>
 </layout>

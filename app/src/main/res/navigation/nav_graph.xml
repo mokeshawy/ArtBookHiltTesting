@@ -7,7 +7,17 @@
 
     <fragment
         android:id="@+id/artsFragment"
-        android:name="com.example.artbookhilttesting.ui.fragment.ArtsFragment"
-        android:label="fragment_arts"
+        android:name="com.example.artbookhilttesting.ui.fragment.artsfragment.ArtsFragment"
+        android:label="Arts Fragment"
         tools:layout="@layout/fragment_arts" />
+    <fragment
+        android:id="@+id/addArtDetailsFragment"
+        android:name="com.example.artbookhilttesting.ui.fragment.adddetailsfragment.AddArtDetailsFragment"
+        android:label="Add Details"
+        tools:layout="@layout/fragment_add_art_details" />
+    <fragment
+        android:id="@+id/imgaeApiFragment"
+        android:name="com.example.artbookhilttesting.ImageApiFragment"
+        android:label="Image Api"
+        tools:layout="@layout/fragment_image_api" />
 </navigation>

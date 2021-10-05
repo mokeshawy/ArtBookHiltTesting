@@ -10,13 +10,7 @@ import javax.inject.Inject
 
 class ArtsRepository
 @Inject
-constructor(private val artDao: ArtDao,
-            private val endPoint: EndPoint): ArtsRepositoryInterface {
-
-    /* insert art to room database */
-    override suspend fun insertArt(artModel: ArtModel) {
-        artDao.insertArt(artModel)
-    }
+constructor(private val artDao: ArtDao ): ArtsRepositoryInterface {
 
     /* delete art from room database */
     override suspend fun deleteArt(artModel: ArtModel) {
@@ -28,19 +22,4 @@ constructor(private val artDao: ArtDao,
         return artDao.observeArts()
     }
 
-    /* search  image */
-    override suspend fun searchImage(imageString: String): Resource<ImageResponse> {
-        return try {
-            val response = endPoint.imageSearch(imageString)
-            if(response.isSuccessful){
-                response.body()?.let {
-                    return@let Resource.success(it)
-                }?: Resource.error("Error",null)
-            }else{
-                Resource.error("Error",null)
-            }
-        }catch (e:Exception){
-            Resource.error("No data",null)
-        }
-    }
 }

@@ -9,9 +9,11 @@ import com.example.artbookhilttesting.api.EndPoint
 import com.example.artbookhilttesting.constants.Const
 import com.example.artbookhilttesting.room.ArtDao
 import com.example.artbookhilttesting.room.ArtDatabase
+import com.example.artbookhilttesting.ui.fragment.adddetailsfragment.repository.AddArtsDetailsRepository
 import com.example.artbookhilttesting.ui.fragment.adddetailsfragment.repository.AddArtsDetailsRepositoryInterface
 import com.example.artbookhilttesting.ui.fragment.artsfragment.repository.ArtsRepository
 import com.example.artbookhilttesting.ui.fragment.artsfragment.repository.ArtsRepositoryInterface
+import com.example.artbookhilttesting.ui.fragment.imageapifragment.repository.ImageApiRepository
 import com.example.artbookhilttesting.ui.fragment.imageapifragment.repository.ImageApiRepositoryInterface
 import dagger.Module
 import dagger.Provides
@@ -53,17 +55,17 @@ object AppModule {
     /* provide AddArtDetailsRepository */
     @Singleton
     @Provides
-    fun injectNormalArtsRepo( artDao: ArtDao , api : EndPoint) = ArtsRepository( artDao , api ) as ArtsRepositoryInterface
+    fun injectNormalArtsRepo( artDao: ArtDao ) = ArtsRepository( artDao  ) as ArtsRepositoryInterface
 
     /* provide AddArtDetailsRepository */
     @Singleton
     @Provides
-    fun injectNormalAddArtDetailsRepo( artDao: ArtDao , api : EndPoint) = ArtsRepository( artDao , api ) as AddArtsDetailsRepositoryInterface
+    fun injectNormalAddArtDetailsRepo( artDao: ArtDao ) = AddArtsDetailsRepository( artDao ) as AddArtsDetailsRepositoryInterface
 
     /* provide AddArtDetailsRepository */
     @Singleton
     @Provides
-    fun injectNormalImageApiRepo( artDao: ArtDao , api : EndPoint) = ArtsRepository( artDao , api ) as ImageApiRepositoryInterface
+    fun injectNormalImageApiRepo( api : EndPoint) = ImageApiRepository( api ) as ImageApiRepositoryInterface
 
     /* provide adapter */
     @Singleton

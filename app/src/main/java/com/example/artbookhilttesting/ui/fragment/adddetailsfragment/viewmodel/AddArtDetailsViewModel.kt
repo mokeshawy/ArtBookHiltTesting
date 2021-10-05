@@ -39,11 +39,6 @@ constructor( private val addArtsDetailsRepository: AddArtsDetailsRepository ): V
         selectedImage.postValue(url)
     }
 
-    /* delete art */
-    fun deleteArt(artModel: ArtModel) = viewModelScope.launch{
-        addArtsDetailsRepository.deleteArt(artModel)
-    }
-
     /* insertArt */
     fun insertArt( artModel: ArtModel) = viewModelScope.launch {
         addArtsDetailsRepository.insertArt(artModel)

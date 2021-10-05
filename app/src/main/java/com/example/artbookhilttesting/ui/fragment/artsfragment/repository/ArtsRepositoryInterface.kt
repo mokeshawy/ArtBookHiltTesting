@@ -7,11 +7,8 @@ import com.example.artbookhilttesting.model.ImageResponse
 
 interface ArtsRepositoryInterface {
 
-    suspend fun insertArt( artModel: ArtModel)
-
     suspend fun deleteArt( artModel: ArtModel )
 
     fun getArt() : LiveData<List<ArtModel>>
 
-    suspend fun searchImage( imageString : String ) : Resource<ImageResponse>
 }

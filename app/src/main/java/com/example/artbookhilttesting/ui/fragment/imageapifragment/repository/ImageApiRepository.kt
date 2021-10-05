@@ -10,25 +10,11 @@ import javax.inject.Inject
 
 class ImageApiRepository
 @Inject
-constructor(private val artDao: ArtDao,
-            private val endPoint: EndPoint): ImageApiRepositoryInterface {
+constructor( private val endPoint: EndPoint ): ImageApiRepositoryInterface {
 
-    /* insert art to room database */
-    override suspend fun insertArt(artModel: ArtModel) {
-        artDao.insertArt(artModel)
-    }
 
-    /* delete art from room database */
-    override suspend fun deleteArt(artModel: ArtModel) {
-        artDao.deleteArt(artModel)
-    }
 
-    /* get art list from room */
-    override fun getArt(): LiveData<List<ArtModel>> {
-        return artDao.observeArts()
-    }
-
-    /* search  image */
+    /* search  image from api  */
     override suspend fun searchImage(imageString: String): Resource<ImageResponse> {
         return try {
             val response = endPoint.imageSearch(imageString)

@@ -27,9 +27,4 @@ constructor( private val artsRepository: ArtsRepository): ViewModel() {
         artsRepository.deleteArt(artModel)
     }
 
-    /* insertArt */
-    fun insertArt( artModel: ArtModel) = viewModelScope.launch {
-        artsRepository.insertArt(artModel)
-    }
-
 }

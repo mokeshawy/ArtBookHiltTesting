@@ -1,25 +1,26 @@
-package com.example.artbookhilttesting.ui.fragment.adddetailsfragment
+package com.example.artbookhilttesting.ui.fragment.adddetailsfragment.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.artbookhilttesting.constants.Resource
 import com.example.artbookhilttesting.model.ArtModel
 import com.example.artbookhilttesting.model.ImageResponse
+import com.example.artbookhilttesting.ui.fragment.adddetailsfragment.repository.AddArtsDetailsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddArtsViewModel
+class AddArtDetailsViewModel
 @Inject
-constructor( private val addArtDetailsRepository: AddArtDetailsRepository): ViewModel() {
+constructor( private val addArtsDetailsRepository: AddArtsDetailsRepository ): ViewModel() {
 
-    /* get artList from repository */
-    val artList = addArtDetailsRepository.getArt()
+    val etName          = MutableLiveData<String>()
+    val etArtistName    = MutableLiveData<String>()
+    val etYear          = MutableLiveData<String>()
 
-    /* get image from imageResponse */
-    val images = MutableLiveData<Resource<ImageResponse>>()
 
     /* selected image as live data */
     val selectedImage = MutableLiveData<String>()
@@ -29,7 +30,7 @@ constructor( private val addArtDetailsRepository: AddArtDetailsRepository): View
 
 
     /* rest insert image */
-    fun restInsertInsertMsg(){
+    fun restInsertMsg(){
         insertArtMsg = MutableLiveData<Resource<ArtModel>>()
     }
 
@@ -40,18 +41,19 @@ constructor( private val addArtDetailsRepository: AddArtDetailsRepository): View
 
     /* delete art */
     fun deleteArt(artModel: ArtModel) = viewModelScope.launch{
-        addArtDetailsRepository.deleteArt(artModel)
+        addArtsDetailsRepository.deleteArt(artModel)
     }
 
     /* insertArt */
     fun insertArt( artModel: ArtModel) = viewModelScope.launch {
-        addArtDetailsRepository.insertArt(artModel)
+        addArtsDetailsRepository.insertArt(artModel)
     }
 
     /* get art from remote */
-    fun makeArt( name : String , artistName : String ,year : String ){
+    fun makeArt( name : String , artistName : String  , year : String ){
         if( name.isEmpty() || artistName.isEmpty() || year.isEmpty()){
             insertArtMsg.postValue(Resource.error("Enter name , artist , year", null))
+            return
         }
         val yearInt = try {
             year.toInt()
@@ -59,22 +61,9 @@ constructor( private val addArtDetailsRepository: AddArtDetailsRepository): View
             insertArtMsg.postValue(Resource.error("Year should be number",null))
             return
         }
-        val art = ArtModel(name ,artistName , yearInt, selectedImage.value?: "" )
+        val art = ArtModel(etName.value!! ,etArtistName.value!! , yearInt, selectedImage.value?: "" )
         insertArt(art)
         setSelectedImage("")
         insertArtMsg.postValue(Resource.success(art))
-    }
-
-
-    /* search for image */
-    fun searchForImage( searchString : String ) {
-        if(searchString.isEmpty()){
-            return
-        }
-        images.value = Resource.loading(null)
-        viewModelScope.launch {
-            val response = addArtDetailsRepository.searchImage(searchString)
-            images.value = response
-        }
     }
 }

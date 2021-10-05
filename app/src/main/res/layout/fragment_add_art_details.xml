@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="adArtsDetailsFragment"
-            type="com.example.artbookhilttesting.ui.fragment.adddetailsfragment.AddArtsViewModel" />
+            name="addArtsDetailsFragment"
+            type="com.example.artbookhilttesting.ui.fragment.adddetailsfragment.viewmodel.AddArtDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +51,8 @@
                 android:id="@+id/et_enter_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:inputType="text"
+                android:text="@={addArtsDetailsFragment.etName}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -70,7 +71,8 @@
                 android:id="@+id/et_enter_arts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="text"
+                android:text="@={addArtsDetailsFragment.etArtistName}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -89,7 +91,8 @@
                 android:id="@+id/et_enter_year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:inputType="text"
+                android:text="@={addArtsDetailsFragment.etYear}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 

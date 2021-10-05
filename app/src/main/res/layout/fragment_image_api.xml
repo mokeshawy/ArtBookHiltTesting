@@ -6,7 +6,7 @@
     <data>
         <variable
             name="imageApiFragment"
-            type="com.example.artbookhilttesting.ui.fragment.imageapifragment.ImageApiViewModel" />
+            type="com.example.artbookhilttesting.ui.fragment.artsfragment.viewmodel.ArtsViewModel" />
     </data>
 
     <LinearLayout

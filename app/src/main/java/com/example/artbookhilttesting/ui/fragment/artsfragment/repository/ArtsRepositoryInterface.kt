@@ -1,11 +1,11 @@
-package com.example.artbookhilttesting.ui.fragment.artsfragment
+package com.example.artbookhilttesting.ui.fragment.artsfragment.repository
 
 import androidx.lifecycle.LiveData
 import com.example.artbookhilttesting.constants.Resource
 import com.example.artbookhilttesting.model.ArtModel
 import com.example.artbookhilttesting.model.ImageResponse
 
-interface ArtRepositoryInterface {
+interface ArtsRepositoryInterface {
 
     suspend fun insertArt( artModel: ArtModel)
 

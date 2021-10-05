@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.artbookhilttesting.R
 import com.example.artbookhilttesting.adapter.ArtRecyclerAdapter
 import com.example.artbookhilttesting.databinding.FragmentArtsBinding
+import com.example.artbookhilttesting.ui.fragment.artsfragment.viewmodel.ArtsViewModel
 import javax.inject.Inject
 
 
@@ -26,7 +26,7 @@ constructor(
     ) : Fragment() {
 
     lateinit var binding : FragmentArtsBinding
-    private val artsViewModel : ArtsViewModel by activityViewModels()
+    private val artViewModel : ArtsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle? ): View? {
@@ -40,7 +40,7 @@ constructor(
 
         /* connect with viewModel */
         binding.lifecycleOwner  = this
-        binding.artsFragment    = artsViewModel
+        binding.artsFragment    = artViewModel
 
         /* go to add details arts */
         binding.btnFloatingAction.setOnClickListener {
@@ -56,7 +56,7 @@ constructor(
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val layoutPosition = viewHolder.layoutPosition
                 val selectArt = artRecyclerAdapter.arts[layoutPosition]
-                artsViewModel.deleteArt(selectArt)
+                artViewModel.deleteArt(selectArt)
             }
         }
 
@@ -72,7 +72,7 @@ constructor(
 
     /* function of subscribeToObservers */
     private fun subscribeToObservers(){
-        artsViewModel.artList.observe(viewLifecycleOwner, Observer {
+        artViewModel.artList.observe(viewLifecycleOwner, Observer {
             artRecyclerAdapter.arts = it
         })
     }

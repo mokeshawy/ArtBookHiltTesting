@@ -6,7 +6,7 @@
     <data>
         <variable
             name="artsFragment"
-            type="com.example.artbookhilttesting.ui.fragment.artsfragment.ArtsViewModel" />
+            type="com.example.artbookhilttesting.ui.fragment.artsfragment.viewmodel.ArtsViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -40,7 +40,7 @@
             android:clickable="true"
             app:layout_anchorGravity="bottom|right|end"
             app:layout_anchor="@id/rv_arts_book"
-            android:layout_margin="16dp"/>
+            android:layout_margin="40dp"/>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

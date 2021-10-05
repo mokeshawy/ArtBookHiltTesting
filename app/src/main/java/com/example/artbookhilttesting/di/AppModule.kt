@@ -9,12 +9,10 @@ import com.example.artbookhilttesting.api.EndPoint
 import com.example.artbookhilttesting.constants.Const
 import com.example.artbookhilttesting.room.ArtDao
 import com.example.artbookhilttesting.room.ArtDatabase
-import com.example.artbookhilttesting.ui.fragment.adddetailsfragment.AddArtDetailsRepository
-import com.example.artbookhilttesting.ui.fragment.adddetailsfragment.AddArtDetailsRepositoryInterface
-import com.example.artbookhilttesting.ui.fragment.artsfragment.ArtRepository
-import com.example.artbookhilttesting.ui.fragment.artsfragment.ArtRepositoryInterface
-import com.example.artbookhilttesting.ui.fragment.imageapifragment.ImageApiRepository
-import com.example.artbookhilttesting.ui.fragment.imageapifragment.ImageApiRepositoryInterface
+import com.example.artbookhilttesting.ui.fragment.adddetailsfragment.repository.AddArtsDetailsRepositoryInterface
+import com.example.artbookhilttesting.ui.fragment.artsfragment.repository.ArtsRepository
+import com.example.artbookhilttesting.ui.fragment.artsfragment.repository.ArtsRepositoryInterface
+import com.example.artbookhilttesting.ui.fragment.imageapifragment.repository.ImageApiRepositoryInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,20 +48,22 @@ object AppModule {
            .build().create(EndPoint::class.java)
     }
 
-    /* provide ArtRepository */
-    @Singleton
-    @Provides
-    fun injectNormalArtRepo( artDao: ArtDao , api : EndPoint) = ArtRepository( artDao , api ) as ArtRepositoryInterface
+
 
     /* provide AddArtDetailsRepository */
     @Singleton
     @Provides
-    fun injectNormalAddArtDetailsRepo( artDao: ArtDao , api : EndPoint) = AddArtDetailsRepository( artDao , api ) as AddArtDetailsRepositoryInterface
+    fun injectNormalArtsRepo( artDao: ArtDao , api : EndPoint) = ArtsRepository( artDao , api ) as ArtsRepositoryInterface
 
-    /* provide ImageApiRepository */
+    /* provide AddArtDetailsRepository */
     @Singleton
     @Provides
-    fun injectNormalImageApiRepo( artDao: ArtDao , api : EndPoint) = ImageApiRepository( artDao , api ) as ImageApiRepositoryInterface
+    fun injectNormalAddArtDetailsRepo( artDao: ArtDao , api : EndPoint) = ArtsRepository( artDao , api ) as AddArtsDetailsRepositoryInterface
+
+    /* provide AddArtDetailsRepository */
+    @Singleton
+    @Provides
+    fun injectNormalImageApiRepo( artDao: ArtDao , api : EndPoint) = ArtsRepository( artDao , api ) as ImageApiRepositoryInterface
 
     /* provide adapter */
     @Singleton

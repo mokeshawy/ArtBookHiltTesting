@@ -44,14 +44,12 @@ constructor( val glide : RequestManager) : RecyclerView.Adapter<ImageRecyclerAda
     }
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val imageUrl = images[position]
-        holder.binding.apply {
-            glide.load(imageUrl).into(ivSingleArtAmage)
-        }
-
-        /* call function setOnClick listener */
-        setOnItemClickListener {
-            onItemClickListener?.let {
-                it(imageUrl)
+        holder.itemView.apply {
+            glide.load(imageUrl).into(holder.binding.ivSingleArtAmage)
+            setOnClickListener {
+                onItemClickListener?.let {
+                    it(imageUrl)
+                }
             }
         }
     }

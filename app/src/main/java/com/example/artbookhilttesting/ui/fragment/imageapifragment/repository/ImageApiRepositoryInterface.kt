@@ -1,4 +1,4 @@
-package com.example.artbookhilttesting.ui.fragment.imageapifragment
+package com.example.artbookhilttesting.ui.fragment.imageapifragment.repository
 
 import androidx.lifecycle.LiveData
 import com.example.artbookhilttesting.constants.Resource

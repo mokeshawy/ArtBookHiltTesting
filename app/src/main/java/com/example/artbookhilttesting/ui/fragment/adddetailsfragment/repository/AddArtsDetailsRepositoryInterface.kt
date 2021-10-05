@@ -1,11 +1,11 @@
-package com.example.artbookhilttesting.ui.fragment.adddetailsfragment
+package com.example.artbookhilttesting.ui.fragment.adddetailsfragment.repository
 
 import androidx.lifecycle.LiveData
 import com.example.artbookhilttesting.constants.Resource
 import com.example.artbookhilttesting.model.ArtModel
 import com.example.artbookhilttesting.model.ImageResponse
 
-interface AddArtDetailsRepositoryInterface {
+interface AddArtsDetailsRepositoryInterface {
 
     suspend fun insertArt( artModel: ArtModel)
 

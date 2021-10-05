@@ -1,4 +1,4 @@
-package com.example.artbookhilttesting.ui.fragment.imageapifragment
+package com.example.artbookhilttesting.ui.fragment.adddetailsfragment.repository
 
 import androidx.lifecycle.LiveData
 import com.example.artbookhilttesting.api.EndPoint
@@ -8,10 +8,10 @@ import com.example.artbookhilttesting.model.ImageResponse
 import com.example.artbookhilttesting.room.ArtDao
 import javax.inject.Inject
 
-class ImageApiRepository
+class AddArtsDetailsRepository
 @Inject
 constructor(private val artDao: ArtDao,
-            private val endPoint: EndPoint): ImageApiRepositoryInterface{
+            private val endPoint: EndPoint): AddArtsDetailsRepositoryInterface {
 
     /* insert art to room database */
     override suspend fun insertArt(artModel: ArtModel) {
@@ -23,7 +23,7 @@ constructor(private val artDao: ArtDao,
         artDao.deleteArt(artModel)
     }
 
-    /* get art list from api */
+    /* get art list from room */
     override fun getArt(): LiveData<List<ArtModel>> {
         return artDao.observeArts()
     }

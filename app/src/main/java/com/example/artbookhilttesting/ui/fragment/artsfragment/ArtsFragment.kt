@@ -7,15 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.artbookhilttesting.R
+import com.example.artbookhilttesting.adapter.ArtRecyclerAdapter
 import com.example.artbookhilttesting.databinding.FragmentArtsBinding
+import javax.inject.Inject
 
 
-class ArtsFragment : Fragment() {
+class ArtsFragment
+@Inject
+constructor(
+    val artRecyclerAdapter: ArtRecyclerAdapter
+
+    ) : Fragment() {
 
     lateinit var binding : FragmentArtsBinding
     private val artsViewModel : ArtsViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle? ): View? {
         // Inflate the layout for this fragment
@@ -34,5 +46,34 @@ class ArtsFragment : Fragment() {
         binding.btnFloatingAction.setOnClickListener {
             findNavController().navigate(R.id.action_artsFragment_to_addArtDetailsFragment)
         }
+
+        /* create swipe delete of item ..*/
+        val swipeCallBack = object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+            override fun onMove( recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val layoutPosition = viewHolder.layoutPosition
+                val selectArt = artRecyclerAdapter.arts[layoutPosition]
+                artsViewModel.deleteArt(selectArt)
+            }
+        }
+
+        /* call function subscribeToObservers*/
+        subscribeToObservers()
+
+        /* handle operation of recycler view */
+        binding.rvArtsBook.adapter = artRecyclerAdapter
+        binding.rvArtsBook.layoutManager = LinearLayoutManager(requireActivity())
+        ItemTouchHelper(swipeCallBack).attachToRecyclerView(binding.rvArtsBook)
+
+    }
+
+    /* function of subscribeToObservers */
+    private fun subscribeToObservers(){
+        artsViewModel.artList.observe(viewLifecycleOwner, Observer {
+            artRecyclerAdapter.arts = it
+        })
     }
 }

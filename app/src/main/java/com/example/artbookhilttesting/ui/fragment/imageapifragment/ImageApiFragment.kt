@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.RequestManager
+import com.example.artbookhilttesting.adapter.ImageRecyclerAdapter
 import com.example.artbookhilttesting.databinding.FragmentImageApiBinding
 import javax.inject.Inject
 
 class ImageApiFragment
 @Inject
-constructor( ): Fragment() {
+constructor( private val imageRecyclerAdapter: ImageRecyclerAdapter): Fragment() {
 
     lateinit var binding : FragmentImageApiBinding
     private val imageApiViewModel : ImageApiViewModel by activityViewModels()

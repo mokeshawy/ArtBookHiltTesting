@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.artbookhilttesting.constants.Resource
 import com.example.artbookhilttesting.model.ArtModel
+import com.example.artbookhilttesting.ui.fragment.adddetailsfragment.repository.AddArtsDetailsRepository
+import com.example.artbookhilttesting.ui.fragment.adddetailsfragment.repository.AddArtsDetailsRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -12,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AddArtDetailsViewModel
 @Inject
-constructor( private val addArtsDetailsRepository: com.example.artbookhilttesting.repo.FakeAddArtsDetailsRepository): ViewModel() {
+constructor( private val addArtsDetailsRepositoryInterface : AddArtsDetailsRepositoryInterface): ViewModel() {
 
     val etName          = MutableLiveData<String>()
     val etArtistName    = MutableLiveData<String>()
@@ -38,7 +40,7 @@ constructor( private val addArtsDetailsRepository: com.example.artbookhilttestin
 
     /* insertArt */
     fun insertArt( artModel: ArtModel) = viewModelScope.launch {
-        addArtsDetailsRepository.insertArt(artModel)
+        addArtsDetailsRepositoryInterface.insertArt(artModel)
     }
 
     /* get art from remote */

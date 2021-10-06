@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.artbookhilttesting.constants.Resource
 import com.example.artbookhilttesting.model.ImageResponse
 import com.example.artbookhilttesting.ui.fragment.imageapifragment.repository.ImageApiRepository
+import com.example.artbookhilttesting.ui.fragment.imageapifragment.repository.ImageApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ImageApiViewModel
     @Inject
-    constructor( private val imageApiRepository: ImageApiRepository) : ViewModel() {
+    constructor( private val imageApiRepositoryInterface : ImageApiRepositoryInterface) : ViewModel() {
 
 
     /* get image from imageResponse */
@@ -27,7 +28,7 @@ class ImageApiViewModel
         }
         images.value = Resource.loading(null)
         viewModelScope.launch {
-            val response = imageApiRepository.searchImage(searchString)
+            val response = imageApiRepositoryInterface.searchImage(searchString)
             images.value = response
         }
     }

@@ -1,4 +1,4 @@
-package com.example.artbookhilttesting.constTest
+package com.example.artbookhilttesting.consttest
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

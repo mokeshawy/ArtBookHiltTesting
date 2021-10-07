@@ -1,8 +1,8 @@
 package com.example.artbookhilttesting.viewmodel.adddetailsviewmodeltest
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.artbookhilttesting.constTest.MainCoroutineRule
-import com.example.artbookhilttesting.constTest.getOrAwaitValue
+import com.example.artbookhilttesting.consttest.MainCoroutineRule
+import com.example.artbookhilttesting.consttest.getOrAwaitValue
 import com.example.artbookhilttesting.constants.Status
 import com.example.artbookhilttesting.repo.FakeAddArtsDetailsRepository
 import com.example.artbookhilttesting.ui.fragment.adddetailsfragment.viewmodel.AddArtDetailsViewModel

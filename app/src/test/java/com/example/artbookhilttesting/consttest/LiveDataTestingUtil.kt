@@ -1,4 +1,4 @@
-package com.example.artbookhilttesting.constTest
+package com.example.artbookhilttesting.consttest
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

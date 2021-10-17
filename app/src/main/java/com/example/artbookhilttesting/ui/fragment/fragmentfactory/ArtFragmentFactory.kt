@@ -22,7 +22,7 @@ constructor(
         return when(className){
 
             /* inject artRecyclerAdapter in artsFragment */
-            ArtsFragment::class.java.name           -> ArtsFragment(artRecyclerAdapter)
+            ArtsFragment::class.java.name          -> ArtsFragment(artRecyclerAdapter)
 
             /* inject glide in addArtDetailsFragment */
             AddArtDetailsFragment::class.java.name -> AddArtDetailsFragment(glide)

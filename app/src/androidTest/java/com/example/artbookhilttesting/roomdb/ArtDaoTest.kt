@@ -1,41 +1,52 @@
 package com.example.artbookhilttesting.roomdb
 
-import android.content.Context
+
+
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
-import com.example.artbookhilttesting.consttest.getOrAwaitValue
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import com.example.artbookhilttesting.getOrAwaitValue
 import com.example.artbookhilttesting.model.ArtModel
 import com.example.artbookhilttesting.room.ArtDao
 import com.example.artbookhilttesting.room.ArtDatabase
 import com.google.common.truth.Truth.assertThat
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
+import javax.inject.Inject
+import javax.inject.Named
+
 
 @SmallTest
 @ExperimentalCoroutinesApi
-@RunWith(RobolectricTestRunner::class)
+@HiltAndroidTest
 class ArtDaoTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: ArtDatabase
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
+    @Inject
+    @Named("testDatabase")
+    lateinit var database : ArtDatabase
+
     private lateinit var dao : ArtDao
 
     @Before
     fun setUp(){
-        val appContext = ApplicationProvider.getApplicationContext<Context>()
+       /* val appContext = ApplicationProvider.getApplicationContext<Context>()
         database = Room.inMemoryDatabaseBuilder(
             appContext,
-            ArtDatabase::class.java).allowMainThreadQueries().build()
+            ArtDatabase::class.java).allowMainThreadQueries().build() */
+
+        hiltRule.inject()
         dao = database.artDao()
     }
 
